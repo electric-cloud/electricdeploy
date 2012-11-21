@@ -1,0 +1,4 @@
+include (
+    "deploy-model",
+    "deploy-persist"
+)

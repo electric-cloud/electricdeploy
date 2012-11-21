@@ -1,0 +1,33 @@
+apply plugin: "maven"
+subprojects {
+    apply plugin: "java"
+    group = "com.electric-cloud.model"
+    version = "1.0.0.SNAPSHOT"
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "http://download.eclipse.org/rt/eclipselink/maven.repo"
+        }
+        maven {
+            url "hsqldb.org/repos"
+        }
+    }
+    dependencies {
+        compile('cglib:cglib:2.2.2',
+                "org.springframework:spring-tx:${springVersion}",
+                "org.springframework:spring-aop:${springVersion}",
+                "org.springframework:spring-orm:${springVersion}",
+                //"org.springframework:spring-jpa:${springJpaVersion}",
+                "org.springframework:spring-context:${springVersion}",
+                "org.eclipse.persistence:javax.persistence:${jpaVersion}",
+                "org.eclipse.persistence:eclipselink:${eclipselinkVersion}",
+                "org.hibernate:hibernate-validator:${hibernateValidationVersion}")
+        testCompile("org.hsqldb:hsqldb:${hsqldbVersion}",
+                    "commons-dbcp:commons-dbcp:${commonsDbcpVersion}",
+                    "junit:junit:${junitVersion}",
+                    "org.mockito:mockito-all:${mockitoVersion}",
+                    "org.springframework:spring-test:${springVersion}")
+    }
+}
+

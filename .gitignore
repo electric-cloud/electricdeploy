@@ -1,0 +1,8 @@
+
+*.iml
+*/out/*
+*/target/*
+*/.gradle/*
+*/.idea/*
+*.class
+*/build/*
