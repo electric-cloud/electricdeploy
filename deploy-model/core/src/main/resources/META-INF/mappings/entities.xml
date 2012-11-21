@@ -7,6 +7,18 @@
         http://www.eclipse.org/eclipselink/xsds/persistence/orm
         http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_1.xsd"
   >
+  <object-type-converter name="role"
+                         object-type="com.ec.deploy.model.auth.Role"
+                         data-type="java.lang.String">
+    <conversion-value data-value="GUEST" object-value="GUEST"/>
+    <conversion-value data-value="USER" object-value="USER"/>
+    <conversion-value data-value="TENANT_USER" object-value="TENANT_USER" />
+    <conversion-value data-value="TENANT_ADMINISTRATOR" object-value="TENANT_ADMINISTRATOR" />
+    <conversion-value data-value="ADMINISTRATOR" object-value="ADMINISTRATOR" />
+
+  </object-type-converter>
+
+
   <mapped-superclass class="com.ec.deploy.model.core.PersistentEntity">
     <attributes>
       <id name="id">
@@ -26,8 +38,19 @@
       <basic name="firstName" optional="false">
         <column length="50"/>
       </basic>
+      <basic name="lastName" optional="false">
+        <column unique="true"/>
+      </basic>
+      <basic name="username" optional="false">
+        <column length="50"/>
+      </basic>
+      <basic-collection name="authorities" fetch="EAGER">
+        <value-column name="ROLE" />
+        <convert>role</convert>
+      </basic-collection>
     </attributes>
   </entity>
+
 
   <entity class="com.ec.deploy.model.tenancy.Tenant">
     <attributes>

@@ -20,9 +20,11 @@ subprojects {
                 "org.springframework:spring-orm:${springVersion}",
                 //"org.springframework:spring-jpa:${springJpaVersion}",
                 "org.springframework:spring-context:${springVersion}",
+                "org.springframework.security:spring-security-core:${springVersion}",
                 "org.eclipse.persistence:javax.persistence:${jpaVersion}",
                 "org.eclipse.persistence:eclipselink:${eclipselinkVersion}",
-                "org.hibernate:hibernate-validator:${hibernateValidationVersion}")
+                "org.hibernate:hibernate-validator:${hibernateValidationVersion}"
+        )
         testCompile("org.hsqldb:hsqldb:${hsqldbVersion}",
                     "commons-dbcp:commons-dbcp:${commonsDbcpVersion}",
                     "junit:junit:${junitVersion}",

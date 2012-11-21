@@ -1,5 +1,7 @@
 package com.ec.deploy.model.auth;
 
+import java.util.Collections;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
@@ -10,6 +12,11 @@ import org.junit.Test;
 import com.ec.deploy.model.core.PersistentEntityTestCase;
 import com.ec.deploy.model.core.TenantRestrictedEntityTestCase;
 import com.ec.deploy.model.tenancy.Tenant;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class UserTest
     extends TenantRestrictedEntityTestCase<User>
@@ -77,6 +84,30 @@ public class UserTest
         entityManager.persist(user);
     }
 
+    @Test
+    public void ensureUserHasNoRolesUponDefaultCreation() {
+        assertTrue(user.getAuthorities().isEmpty());
+    }
+
+    @Test
+    public void ensureUserHasNoRolesUponPersistAndRetrieval() {
+        entityManager.persist(user);
+        entityManager.flush();
+        assertTrue(entityManager.find(User.class, user.getId())
+                                .getAuthorities()
+                                .isEmpty());
+    }
+
+    @Test
+    public void ensureAddingRoleToUserResultsInRoleBeingAvailableUponRetrieval() {
+        user.getAuthorities().add(Role.ADMINISTRATOR);
+        entityManager.persist(user);
+        entityManager.flush();
+        assertThat(entityManager.find(User.class, user.getId())
+                                .getAuthorities(),
+            is(equalTo(Collections.singleton(Role.ADMINISTRATOR))));
+    }
+
     @Override
     protected User createValidPersistentEntity()
     {
@@ -86,6 +117,7 @@ public class UserTest
 
         entityManager.persist(tenant);
         user = new User();
+        user.setUsername("joe");
         user.setFirstName(defaultFirstName);
         user.setLastName(defaultLastName);
         user.setTenant(tenant);

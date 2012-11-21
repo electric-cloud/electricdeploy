@@ -67,6 +67,12 @@ public interface PersistentEntityRepository<
     boolean update(@Nonnull T item);
 
     /**
+     * @param item
+     * @return
+     */
+    T merge(@Nonnull T item);
+
+    /**
      * @param query
      * @param <U>
      * @return

@@ -91,4 +91,21 @@ public class UserDaoTest
         userDao.save(user);
         assertEquals(userDao.count(), 1l);
     }
+
+    @Test
+    public void ensureListOnEmptyRepositoryReturnsNoElements() {
+        assertTrue(userDao.list().isEmpty());
+    }
+
+    @Test
+    public void ensureListOnRepositoryWithSingleUserReturnsUser() {
+        userDao.save(user);
+        assertEquals(userDao.list().size(), 1);
+        assertEquals(userDao.list().get(0).getFirstName(), user.getFirstName());
+    }
+    
+    @Test
+    public void ensure() {
+
+    }
 }
