@@ -41,10 +41,12 @@ public class UserDaoTest
     private Tenant tenant;
     private static final String defaultLastName;
     private static final String defaultFirstName;
+    private static final String defaultUsername;
 
     static {
         defaultFirstName = "Josiah";
         defaultLastName = "Haswell";
+        defaultUsername = "josiahhaswell";
     }
 
     @Before
@@ -59,6 +61,7 @@ public class UserDaoTest
         user.setTenant(tenant);
         user.setLastName(defaultLastName);
         user.setFirstName(defaultFirstName);
+        user.setUsername(defaultUsername);
     }
 
     private void createTenant()
