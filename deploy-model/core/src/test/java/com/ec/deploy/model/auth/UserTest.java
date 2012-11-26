@@ -100,7 +100,7 @@ public class UserTest
 
     @Test
     public void ensureAddingRoleToUserResultsInRoleBeingAvailableUponRetrieval() {
-        user.getAuthorities().add(Role.ADMINISTRATOR);
+        user.addAuthority(Role.ADMINISTRATOR);
         entityManager.persist(user);
         entityManager.flush();
         assertThat(entityManager.find(User.class, user.getId())

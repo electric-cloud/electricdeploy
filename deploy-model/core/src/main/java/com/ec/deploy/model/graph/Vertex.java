@@ -1,13 +1,51 @@
 package com.ec.deploy.model.graph;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import com.ec.deploy.model.core.PersistentEntity;
 
 public class Vertex
-    extends PersistentEntity
+    extends PersistentEntity<Vertex>
 {
 
-    private List<Edge> adjacencies;
+    private Set<Edge> successors;
+    private Set<Edge> predecessors;
 
+    public Vertex() {
+        successors = new LinkedHashSet<>();
+        predecessors = new LinkedHashSet<>();
+    }
+
+    public Vertex(
+        Collection<? extends Edge> successors,
+        Collection<? extends Edge> predecessors
+    ) {
+        this.successors = new LinkedHashSet<>(successors);
+        this.predecessors = new LinkedHashSet<>(predecessors);
+    }
+
+    public Set<Edge> getSuccessors() {
+        return Collections.unmodifiableSet(successors);
+    }
+
+    public Set<Edge> getPredecessors() {
+        return Collections.unmodifiableSet(predecessors);
+    }
+
+    public void addSuccessor(final Edge edge, final Vertex vertex) {
+
+
+    }
+
+    @Override
+    public Vertex clone()
+    {
+        final Vertex clone = new Vertex();
+        clone.setName(getName());
+        clone.setDescription(getDescription());
+        return clone;
+    }
 }

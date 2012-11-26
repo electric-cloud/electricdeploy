@@ -11,7 +11,6 @@ public enum Role implements GrantedAuthority, Comparable<Role>
     ADMINISTRATOR("Administrator", 4),
     TENANT_ADMINISTRATOR("Tenant Administrator", 3);
 
-
     public static final Comparator<Role> ROLE_COMPARATOR;
 
     static {

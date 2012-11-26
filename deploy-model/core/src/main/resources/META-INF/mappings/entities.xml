@@ -24,6 +24,8 @@
       <id name="id">
         <generated-value strategy="IDENTITY"/>
       </id>
+      <basic name="name" />
+      <basic name="description" />
     </attributes>
   </mapped-superclass>
 
@@ -52,10 +54,47 @@
   </entity>
 
 
-  <entity class="com.ec.deploy.model.tenancy.Tenant">
+  <entity class="com.ec.deploy.model.tenancy.Tenant" />
+
+  <entity class="com.ec.deploy.model.graph.Vertex">
     <attributes>
-      <basic name="name"/>
-      <basic name="description"/>
+      <one-to-many
+        name="successors"
+        target-entity="com.ec.deploy.model.graph.Edge"
+        mapped-by="source"
+        fetch="LAZY"
+        />
+      <one-to-many
+        name="predecessors"
+        target-entity="com.ec.deploy.model.graph.Edge"
+        mapped-by="target"
+        fetch="LAZY"
+       />
+    </attributes>
+  </entity> 
+
+  <entity class="com.ec.deploy.model.graph.Edge">
+    <attributes>
+      <many-to-one
+        name="source"
+        target-entity="com.ec.deploy.model.graph.Vertex"
+        fetch="LAZY"
+        >
+        <cascade>
+          <cascade-all/>
+        </cascade>
+        </many-to-one>
+      <many-to-one
+        name="target"
+        target-entity="com.ec.deploy.model.graph.Vertex"
+        fetch="LAZY"
+      >
+        <cascade>
+          <cascade-all/>
+        </cascade>
+
+      </many-to-one>
+
     </attributes>
   </entity>
 

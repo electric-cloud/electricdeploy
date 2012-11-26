@@ -2,7 +2,7 @@ package com.ec.deploy.model.graph;
 
 import com.ec.deploy.model.core.PersistentEntity;
 
-public class Edge extends PersistentEntity
+public class Edge extends PersistentEntity<Edge>
 {
 
     private Vertex source;
@@ -36,8 +36,14 @@ public class Edge extends PersistentEntity
         this.target = target;
     }
 
-
-
-
-
+    @Override
+    public Edge clone()
+    {
+        final Edge result = new Edge();
+        result.setName(getName());
+        result.setSource(source);
+        result.setTarget(target);
+        result.setDescription(getDescription());
+        return result;
+    }
 }

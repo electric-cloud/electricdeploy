@@ -5,8 +5,8 @@ import javax.validation.constraints.NotNull;
 import com.ec.deploy.model.tenancy.Tenant;
 import com.ec.deploy.model.tenancy.TenantRestricted;
 
-public class TenantRestrictedEntity
-    extends PersistentEntity
+public abstract class TenantRestrictedEntity<E extends TenantRestrictedEntity<E>>
+    extends PersistentEntity<E>
     implements TenantRestricted
 {
     @NotNull
@@ -22,4 +22,6 @@ public class TenantRestrictedEntity
     {
         this.tenant = tenant;
     }
+
+    public abstract E clone();
 }
