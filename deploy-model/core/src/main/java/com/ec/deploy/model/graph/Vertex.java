@@ -35,10 +35,16 @@ public class Vertex
         return Collections.unmodifiableSet(predecessors);
     }
 
-    public void addSuccessor(final Edge edge, final Vertex vertex) {
-
-
+    public boolean addSuccessor(final Edge edge) {
+        assert edge != null : "Edge must not be null!";
+        return successors.add(edge);
     }
+
+    public boolean addPredecessor(final Edge edge) {
+        assert edge != null : "Edge must not be null!";
+        return predecessors.add(edge);
+    }
+
 
     @Override
     public Vertex clone()

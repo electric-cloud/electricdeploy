@@ -26,6 +26,15 @@ public class VertexTest extends PersistentEntityTestCase<Vertex>
     public void ensureGetPredecessorsThrowsUnmodifiableCollectionException() {
         createValidPersistentEntity().getPredecessors().add(null);
     }
+    @Test(expected = AssertionError.class)
+    public void ensureAddingNullSuccessorResultsInException() {
+        createValidPersistentEntity().addSuccessor(null);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void ensureAddingNullPredecessorResultsInAssertionError() {
+        createValidPersistentEntity().addPredecessor(null);
+    }
 
 
     @Override

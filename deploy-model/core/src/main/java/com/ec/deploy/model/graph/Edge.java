@@ -36,6 +36,18 @@ public class Edge extends PersistentEntity<Edge>
         this.target = target;
     }
 
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Edge[id:%s, name:%s]{%s -> %s}",
+                getId(), getName(),
+                getSource() == null ? "" : getSource().getName(),
+                getTarget() == null ? "" : getTarget().getName());
+    }
+
+
+
     @Override
     public Edge clone()
     {

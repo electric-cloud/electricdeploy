@@ -73,7 +73,7 @@ public abstract class PersistentEntity<E extends PersistentEntity<E>>
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         return String.format(
                 "PersistentEntity[actual type:'%s']{\n%s}",
                 getClass(), getPropertyString());
