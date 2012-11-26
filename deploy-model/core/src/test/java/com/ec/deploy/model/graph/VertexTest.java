@@ -5,6 +5,10 @@ import org.junit.Test;
 
 import com.ec.deploy.model.core.PersistentEntityTestCase;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 public class VertexTest extends PersistentEntityTestCase<Vertex>
 
 {
@@ -34,6 +38,22 @@ public class VertexTest extends PersistentEntityTestCase<Vertex>
     @Test(expected = AssertionError.class)
     public void ensureAddingNullPredecessorResultsInAssertionError() {
         createValidPersistentEntity().addPredecessor(null);
+    }
+
+    @Test
+    public void ensureTwoVerticesWithNullNameAreEquivalent() {
+        Vertex lhs = new Vertex();
+        lhs.setName(null);
+
+        Vertex rhs = new Vertex();
+        rhs.setName(null);
+
+        assertThat(lhs, is(equalTo(rhs)));
+    }
+    
+    @Test
+    public void ensureTwoVerticesWithDifferent() {
+
     }
 
 

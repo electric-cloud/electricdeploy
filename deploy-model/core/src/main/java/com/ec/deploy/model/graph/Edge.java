@@ -2,7 +2,7 @@ package com.ec.deploy.model.graph;
 
 import com.ec.deploy.model.core.PersistentEntity;
 
-public class Edge extends PersistentEntity<Edge>
+public class Edge extends Element<Edge>
 {
 
     private Vertex source;

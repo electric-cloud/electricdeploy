@@ -8,7 +8,7 @@ import java.util.Set;
 import com.ec.deploy.model.core.PersistentEntity;
 
 public class Vertex
-    extends PersistentEntity<Vertex>
+    extends Element<Vertex>
 {
 
     private Set<Edge> successors;
