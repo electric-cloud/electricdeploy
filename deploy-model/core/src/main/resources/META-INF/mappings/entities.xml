@@ -35,6 +35,12 @@
     </attributes>
   </mapped-superclass>
 
+  <mapped-superclass class="com.ec.deploy.model.graph.Element">
+    <attributes>
+      <many-to-one name="container" optional="false" fetch="LAZY" />
+    </attributes>
+  </mapped-superclass>
+
   <entity class="com.ec.deploy.model.auth.User">
     <attributes>
       <basic name="firstName" optional="false">
