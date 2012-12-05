@@ -1,20 +1,22 @@
 package com.ec.deploy.model.core;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public abstract class PersistentEntity<E extends PersistentEntity<E>>
-    implements Identifiable<Long>,
-    NamedEntity<Long>,
+public abstract class PersistentEntity<
+    E extends PersistentEntity<E, K>, K extends Serializable>
+    implements Identifiable<K>,
+    NamedEntity<K>,
     Copyable<E>
 {
 
 
     @NotNull
-    private long id;
+    protected K id;
 
     @NotNull
     @Size(min = 2, max = 50)
@@ -25,7 +27,7 @@ public abstract class PersistentEntity<E extends PersistentEntity<E>>
     private String description;
 
     @Override
-    public Long getId()
+    public K getId()
     {
         return id;
     }
@@ -58,8 +60,8 @@ public abstract class PersistentEntity<E extends PersistentEntity<E>>
         if(o == null) return false;
         if(o == this) return true;
         if(o.getClass().equals(getClass())) {
-            final PersistentEntity<?> other = (PersistentEntity<?>) o;
-            return ((PersistentEntity<?>) o).getId().equals(getId());
+            final PersistentEntity<?, ?> other = (PersistentEntity<?, ?>) o;
+            return ((PersistentEntity<?, ?>) o).getId().equals(getId());
         }
         return false;
     }
@@ -69,7 +71,7 @@ public abstract class PersistentEntity<E extends PersistentEntity<E>>
 
     @Override
     public int hashCode() {
-        return getId() == null ? 0 : (int) (getId() * 31);
+        return getId() == null ? 0 : (int) (getId().hashCode() * 31);
     }
 
     @Override

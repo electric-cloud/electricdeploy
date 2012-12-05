@@ -11,12 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ec.deploy.model.auth.User;
 
-@Transactional
 @Repository(UserDao.REPOSITORY_NAME)
 public class UserDao
 {
 
     public static final String REPOSITORY_NAME = "UserDao";
+
+
     @PersistenceContext
     private EntityManager entityManager;
 

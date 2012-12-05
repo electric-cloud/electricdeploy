@@ -6,7 +6,7 @@ import com.ec.deploy.model.tenancy.Tenant;
 import com.ec.deploy.model.tenancy.TenantRestricted;
 
 public abstract class TenantRestrictedEntity<E extends TenantRestrictedEntity<E>>
-    extends PersistentEntity<E>
+    extends UniquePersistentEntity<E>
     implements TenantRestricted
 {
     @NotNull

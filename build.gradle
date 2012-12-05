@@ -1,5 +1,43 @@
-apply plugin: "java"
+apply plugin: "base"
+apply plugin: "idea"
 subprojects {
 	apply plugin: "java"
+    apply plugin: "maven"
+    group = "com.electric-cloud"
+    version = "1.0.0.SNAPSHOT"
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "http://download.eclipse.org/rt/eclipselink/maven.repo"
+        }
+        maven {
+            url "hsqldb.org/repos"
+        }
+        maven {
+            url "http://hsqldb.org/repos"
+        }
+    }
+    dependencies {
+
+        compile(
+            'com.google.code.findbugs:jsr305:2.0.1'
+        )
+        compile("cglib:cglib:${cglibVersion}",
+                "org.springframework:spring-tx:${springVersion}",
+                "org.springframework:spring-aop:${springVersion}",
+                "org.springframework:spring-orm:${springVersion}",
+                "org.springframework:spring-context:${springVersion}",
+                "org.springframework.security:spring-security-core:${springVersion}",
+                "org.eclipse.persistence:javax.persistence:${jpaVersion}",
+                "org.eclipse.persistence:eclipselink:${eclipselinkVersion}",
+                "org.hibernate:hibernate-validator:${hibernateValidationVersion}"
+        )
+        testCompile("org.hsqldb:hsqldb:${hsqldbVersion}",
+                    "commons-dbcp:commons-dbcp:${commonsDbcpVersion}",
+                    "junit:junit:${junitVersion}",
+                    "org.mockito:mockito-all:${mockitoVersion}",
+                    "org.springframework:spring-test:${springVersion}")
+    }
 }
 

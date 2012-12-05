@@ -1,10 +1,4 @@
-apply plugin: "java"
-apply plugin: "maven"
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven { url "http://download.eclipse.org/rt/eclipselink/maven.repo" }
-    maven { url "http://hsqldb.org/repos" }
+dependencies {
+    compile project(":deploy-model:util")
 }
-

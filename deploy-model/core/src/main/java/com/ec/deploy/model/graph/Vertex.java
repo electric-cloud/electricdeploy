@@ -23,6 +23,7 @@ public class Vertex
         Collection<? extends Edge> successors,
         Collection<? extends Edge> predecessors
     ) {
+
         this.successors = new LinkedHashSet<>(successors);
         this.predecessors = new LinkedHashSet<>(predecessors);
     }

@@ -2,12 +2,16 @@ package com.ec.deploy.model.graph;
 
 import com.ec.deploy.model.core.PersistentEntity;
 
-public abstract class Element<E extends Element<E>> extends PersistentEntity<E>
+public abstract class Element<E extends Element<E>> extends PersistentEntity<E, Long>
 {
     private Graph container;
 
     public Element(final Graph container) {
         this.container = container;
+    }
+
+    public Element() {
+
     }
 
     public Graph getContainer() {

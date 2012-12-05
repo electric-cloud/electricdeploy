@@ -106,7 +106,6 @@ public abstract class PersistentEntityTestCase<T extends PersistentEntity>
         validPersistentEntity.setDescription(createValidDescription());
         entityManager.persist(validPersistentEntity);
         entityManager.flush();
-
         assertThat(entityManager.find(validPersistentEntity.getClass(),
             validPersistentEntity.getId())
                                 .getDescription(), is(equalTo(

@@ -1,4 +1,6 @@
 include (
     "deploy-model",
+    "deploy-model:core",
+    "deploy-model:util",
     "deploy-persist"
 )

@@ -96,6 +96,4 @@ public class User
         setName(String.format("%s %s", firstName, lastName));
         setDescription("<none>");
     }
-
-
 }

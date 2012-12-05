@@ -15,6 +15,10 @@
                 value="drop-and-create-tables"/>
       <property name="eclipselink.ddl-generation.output-mode" value="database"/>
       <property name="eclipselink.weaving" value="static"/>
+
+      <property
+        name="eclipselink.session.customizer"
+        value="com.ec.deploy.model.sequences.UuidSequence"/>
     </properties>
   </persistence-unit>
 </persistence>

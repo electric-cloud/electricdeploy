@@ -1,6 +1,7 @@
 package com.ec.deploy.model.graph;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ec.deploy.model.core.PersistentEntityTestCase;
@@ -9,6 +10,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@Ignore
 public class VertexTest extends PersistentEntityTestCase<Vertex>
 
 {

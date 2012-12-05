@@ -19,27 +19,32 @@
   </object-type-converter>
 
 
+
   <mapped-superclass class="com.ec.deploy.model.core.PersistentEntity">
     <attributes>
-      <id name="id">
-        <generated-value strategy="IDENTITY"/>
-      </id>
       <basic name="name" />
       <basic name="description" />
+    </attributes>
+  </mapped-superclass>
+  <mapped-superclass class="com.ec.deploy.model.core.UniquePersistentEntity">
+    <attributes>
+      <id name="id" mutable="false">
+        <converter name="uuidConverter"
+                   class="com.ec.deploy.model.converters.UuidConverter" />
+      </id>
     </attributes>
   </mapped-superclass>
 
   <mapped-superclass class="com.ec.deploy.model.core.TenantRestrictedEntity">
     <attributes>
-      <many-to-one name="tenant" optional="false" fetch="LAZY"/>
+      <many-to-one name="tenant" optional="false" fetch="LAZY" />
     </attributes>
   </mapped-superclass>
 
-  <mapped-superclass class="com.ec.deploy.model.graph.Element">
-    <attributes>
-      <many-to-one name="container" optional="false" fetch="LAZY" />
-    </attributes>
-  </mapped-superclass>
+
+
+  <entity class="com.ec.deploy.model.tenancy.Tenant" />
+
 
   <entity class="com.ec.deploy.model.auth.User">
     <attributes>
@@ -56,51 +61,6 @@
         <value-column name="ROLE" />
         <convert>role</convert>
       </basic-collection>
-    </attributes>
-  </entity>
-
-
-  <entity class="com.ec.deploy.model.tenancy.Tenant" />
-
-  <entity class="com.ec.deploy.model.graph.Vertex">
-    <attributes>
-      <one-to-many
-        name="successors"
-        target-entity="com.ec.deploy.model.graph.Edge"
-        mapped-by="source"
-        fetch="LAZY"
-        />
-      <one-to-many
-        name="predecessors"
-        target-entity="com.ec.deploy.model.graph.Edge"
-        mapped-by="target"
-        fetch="LAZY"
-       />
-    </attributes>
-  </entity> 
-
-  <entity class="com.ec.deploy.model.graph.Edge">
-    <attributes>
-      <many-to-one
-        name="source"
-        target-entity="com.ec.deploy.model.graph.Vertex"
-        fetch="LAZY"
-        >
-        <cascade>
-          <cascade-all/>
-        </cascade>
-        </many-to-one>
-      <many-to-one
-        name="target"
-        target-entity="com.ec.deploy.model.graph.Vertex"
-        fetch="LAZY"
-      >
-        <cascade>
-          <cascade-all/>
-        </cascade>
-
-      </many-to-one>
-
     </attributes>
   </entity>
 
