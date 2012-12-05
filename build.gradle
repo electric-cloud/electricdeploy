@@ -1,11 +1,13 @@
 apply plugin: "base"
-apply plugin: "idea"
-subprojects {
-	apply plugin: "java"
-	apply plugin: "idea"
+allprojects {
+    apply plugin: "java"
+    apply plugin: "idea"
     apply plugin: "maven"
     group = "com.electric-cloud"
     version = "1.0.0.SNAPSHOT"
+    sourceCompatibility = 1.7
+
+
     repositories {
         mavenLocal()
         mavenCentral()
@@ -19,6 +21,9 @@ subprojects {
             url "http://hsqldb.org/repos"
         }
     }
+}
+
+subprojects {
     dependencies {
 
         compile(
