@@ -1,0 +1,4 @@
+
+dependencies{
+    compile project(":deploy-model:model-core")
+}

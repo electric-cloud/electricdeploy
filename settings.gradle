@@ -1,6 +1,5 @@
-include (
-    "deploy-model",
-    "deploy-model:core",
-    "deploy-model:util",
-    "deploy-persist"
-)
+include("deploy-model",
+        "deploy-model:model-core",
+        "deploy-model:model-util",
+        "deploy-persist:persist-core",
+        "deploy-persist")
