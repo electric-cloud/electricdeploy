@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<entity-mappings
+  xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.1"
+  xsi:schemaLocation="
+        http://www.eclipse.org/eclipselink/xsds/persistence/orm
+        http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_1.xsd"
+  >
+
+
+  <mapped-superclass class="com.ec.deploy.model.graph.Element">
+    <attributes>
+      <id name="id"/>
+      <many-to-one name="container" optional="false" fetch="LAZY"/>
+    </attributes>
+  </mapped-superclass>
+
+  <entity class="com.ec.deploy.model.graph.Graph">
+    <attributes>
+      <many-to-one name="edges">
+        <join-column name="graph"/>
+      </many-to-one>
+      <many-to-one name="vertices">
+        <join-column name="graph" />
+      </many-to-one>
+    </attributes>
+  </entity>
+
+  <entity class="com.ec.deploy.model.graph.Vertex">
+    <attributes>
+      <one-to-many
+        name="successors"
+        target-entity="com.ec.deploy.model.graph.Edge"
+        mapped-by="source"
+        fetch="LAZY"
+        />
+      <one-to-many
+        name="predecessors"
+        target-entity="com.ec.deploy.model.graph.Edge"
+        mapped-by="target"
+        fetch="LAZY"
+       />
+    </attributes>
+  </entity>
+
+  <entity class="com.ec.deploy.model.graph.Edge">
+    <attributes>
+      <many-to-one
+        name="source"
+        target-entity="com.ec.deploy.model.graph.Vertex"
+        fetch="LAZY"
+        >
+        <cascade>
+          <cascade-all/>
+        </cascade>
+        </many-to-one>
+      <many-to-one
+        name="target"
+        target-entity="com.ec.deploy.model.graph.Vertex"
+        fetch="LAZY"
+      >
+        <cascade>
+          <cascade-all/>
+        </cascade>
+
+      </many-to-one>
+
+    </attributes>
+  </entity>
+
+</entity-mappings>

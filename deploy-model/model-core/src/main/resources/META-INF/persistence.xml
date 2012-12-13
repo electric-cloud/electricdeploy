@@ -1,0 +1,26 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                                 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+  <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <mapping-file>META-INF/mappings/entities.xml</mapping-file>
+    <properties>
+      <property name="eclipselink.target-database"
+                value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
+      <property name="javax.persistence.jdbc.url"
+                value="jdbc:hsqldb:mem:ec_deploy"/>
+      <property name="eclipselink.ddl-generation"
+                value="drop-and-create-tables"/>
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+      <property name="eclipselink.weaving" value="static"/>
+      <!--
+      <property name="eclipselink.session-event-listener" value="com.ec.deploy.model.tenancy.TenantConfigurerListener" />
+      -->
+      <property
+        name="eclipselink.session.customizer"
+        value="com.ec.deploy.model.sequences.UuidSequence"/>
+    </properties>
+  </persistence-unit>
+</persistence>
